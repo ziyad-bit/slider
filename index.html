@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <link rel="stylesheet" href="index.css">
+</head>
+<body>
+      <div class="container">
+            <div class="slider">
+                  <img src="img/Capture6.PNG" id="last_clone" alt="">
+                  <img src="img/Capture2.PNG" alt="">
+                  <img src="img/Capture4.PNG" alt="">
+                  <img src="img/Capture6.PNG" alt="">
+                  <img src="img/Capture2.PNG" id="frist_clone" alt="">
+                  
+            </div>
+      </div>
+      
+      <button id="prev_btn">prev</button>
+      <button id="next_btn">next</button>
+      
+
+
+      <script>
+            const slider     = document.querySelector('.slider'),
+                  slider_img = document.querySelectorAll('.slider img'),
+                  prev_btn   = document.getElementById('prev_btn'),
+                  next_btn   = document.getElementById('next_btn'),
+                  img_width  = slider_img[0].clientWidth,
+                  translation='transform 0.4s ease-in-out';
+                  
+            let counter=1;
+            
+            slider.style.transform='translateX('+(-img_width * counter )+ 'px)'
+
+            next_btn.onclick=function(){
+                  if (counter >= slider_img.length - 1) {
+                        return
+                  }
+                  slider.style.transition=translation;
+                  counter++
+                  slider.style.transform='translateX('+(-img_width * counter )+ 'px)'
+            }
+
+            prev_btn.onclick=function(){
+                  if (counter <= 0) {
+                        return
+                  }
+                  slider.style.transition=translation;
+                  counter--
+                  slider.style.transform='translateX('+(-img_width * counter )+ 'px)'
+            }
+
+            slider.addEventListener('transitionend',()=>{
+                  if (slider_img[counter].id === 'frist_clone') {
+                        slider.style.transition='none';
+                        counter=slider_img.length - counter;
+                        slider.style.transform='translateX('+(-img_width * counter )+ 'px)'
+                  }
+
+                  if (slider_img[counter].id === 'last_clone') {
+                        slider.style.transition='none';
+                        counter=slider_img.length - 2;
+                        slider.style.transform='translateX('+(-img_width * counter )+ 'px)'
+                  }
+            })
+
+
+      </script>
+</body>
+
+</html>

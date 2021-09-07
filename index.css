@@ -1,0 +1,15 @@
+.container{
+    margin: auto;
+    overflow: hidden;
+    width: 49%;
+    border: 5px solid black;
+}
+
+.slider{
+    display: flex;
+    height: 300px;
+
+}
+img{
+    width: 100%;
+}
